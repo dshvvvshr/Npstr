@@ -89,21 +89,18 @@ function initializeSwipeCards() {
         }
     });
     
-    // Touch swipe support
+    // Touch swipe support - attach to card stack container
     let touchStartX = 0;
     let touchEndX = 0;
-    const card = document.querySelector('.profile-card');
     
-    if (card) {
-        card.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        card.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-    }
+    cardStack.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    cardStack.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
     
     function handleSwipe() {
         if (touchEndX < touchStartX - 50) {
@@ -215,7 +212,9 @@ function showNotification(message) {
     setTimeout(() => {
         notification.style.animation = 'slideUp 0.3s ease';
         setTimeout(() => {
-            document.body.removeChild(notification);
+            if (notification && notification.parentNode) {
+                document.body.removeChild(notification);
+            }
         }, 300);
     }, 2000);
 }
