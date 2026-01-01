@@ -40,8 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeNavigation();
     initializeSwipeCards();
     initializeModals();
+    registerServiceWorker();
     console.log('napster app initialized');
 });
+
+// Register service worker for PWA support
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('Service Worker registered:', registration);
+            })
+            .catch(error => {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+}
 
 // Navigation
 function initializeNavigation() {
@@ -92,21 +106,57 @@ function initializeSwipeCards() {
     // Touch swipe support - attach to card stack container
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let isDragging = false;
     
     cardStack.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
-    });
+        touchStartY = e.changedTouches[0].screenY;
+        isDragging = true;
+    }, { passive: true });
+    
+    cardStack.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        
+        const currentX = e.changedTouches[0].screenX;
+        const currentY = e.changedTouches[0].screenY;
+        const deltaX = currentX - touchStartX;
+        const deltaY = Math.abs(e.changedTouches[0].screenY - touchStartY);
+        
+        // Only handle horizontal swipes (prevent interference with vertical scrolling)
+        if (Math.abs(deltaX) > deltaY && Math.abs(deltaX) > 10) {
+            const card = cardStack.querySelector('.profile-card');
+            if (card) {
+                // Visual feedback during swipe
+                const rotation = deltaX / 20;
+                card.style.transform = `translateX(${deltaX}px) rotate(${rotation}deg)`;
+                card.style.transition = 'none';
+            }
+        }
+    }, { passive: true });
     
     cardStack.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        
         touchEndX = e.changedTouches[0].screenX;
+        isDragging = false;
+        
+        const card = cardStack.querySelector('.profile-card');
+        if (card) {
+            card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+            card.style.transform = '';
+        }
+        
         handleSwipe();
-    });
+    }, { passive: true });
     
     function handleSwipe() {
-        if (touchEndX < touchStartX - 50) {
+        const swipeDistance = Math.abs(touchEndX - touchStartX);
+        
+        // Require at least 100px swipe for action
+        if (touchEndX < touchStartX - 100) {
             handleReject();
-        }
-        if (touchEndX > touchStartX + 50) {
+        } else if (touchEndX > touchStartX + 100) {
             handleAccept();
         }
     }
@@ -160,6 +210,10 @@ function loadProfile(index) {
 
 function handleReject() {
     console.log('Rejected profile:', state.profiles[state.currentProfileIndex]);
+    // Haptic feedback for iOS
+    if (window.navigator.vibrate) {
+        window.navigator.vibrate(50);
+    }
     animateCardOut('left');
     state.currentProfileIndex++;
     setTimeout(() => {
@@ -169,6 +223,10 @@ function handleReject() {
 
 function handleAccept() {
     console.log('Accepted profile:', state.profiles[state.currentProfileIndex]);
+    // Haptic feedback for iOS
+    if (window.navigator.vibrate) {
+        window.navigator.vibrate([50, 100, 50]);
+    }
     showNotification('It\'s a match! 💤');
     animateCardOut('right');
     state.currentProfileIndex++;

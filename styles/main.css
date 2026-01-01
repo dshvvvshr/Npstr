@@ -12,12 +12,21 @@
     --border-color: #E0E0E0;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+    
+    /* Safe area insets for iPhone notch/island */
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Improve touch responsiveness on mobile */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 body {
@@ -25,10 +34,16 @@ body {
     background-color: var(--light-bg);
     color: var(--text-primary);
     line-height: 1.6;
+    /* Prevent text size adjustment on orientation change */
+    -webkit-text-size-adjust: 100%;
+    /* Enable smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 #app {
     min-height: 100vh;
+    /* Account for safe areas on iPhone */
+    min-height: calc(100vh - var(--safe-area-top) - var(--safe-area-bottom));
     display: flex;
     flex-direction: column;
 }
@@ -40,6 +55,10 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    /* Add safe area padding for iPhone notch */
+    padding-top: var(--safe-area-top);
+    padding-left: var(--safe-area-left);
+    padding-right: var(--safe-area-right);
 }
 
 .nav-container {
@@ -85,6 +104,10 @@ body {
     color: var(--text-secondary);
     border-radius: 8px;
     transition: all 0.3s ease;
+    /* Ensure minimum touch target size for mobile */
+    min-height: 44px;
+    min-width: 44px;
+    justify-content: center;
 }
 
 .nav-btn:hover {
@@ -227,6 +250,13 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
+    /* Better touch feedback */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.action-btn:active {
+    transform: scale(0.95);
 }
 
 .action-btn.reject {
@@ -863,19 +893,50 @@ body {
     .nav-container {
         flex-direction: column;
         gap: 1rem;
+        padding: 0.75rem 1rem;
     }
 
     .nav-menu {
         width: 100%;
         justify-content: space-around;
+        gap: 0.5rem;
     }
 
     .nav-btn span:not(.icon) {
         display: none;
     }
+    
+    .nav-btn {
+        flex: 1;
+        max-width: 60px;
+    }
 
     .main-content {
         padding: 1rem;
+        /* Add safe area padding for home indicator on iPhone */
+        padding-bottom: calc(1rem + var(--safe-area-bottom));
+    }
+    
+    /* Larger touch targets for mobile */
+    .action-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 1.75rem;
+    }
+    
+    .card-actions {
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    /* Better mobile spacing for swipe cards */
+    .swipe-container {
+        padding: 0;
+    }
+    
+    .card-stack {
+        height: calc(100vh - 250px);
+        max-height: 650px;
     }
 
     .profile-main {
@@ -895,5 +956,28 @@ body {
 
     .challenge-actions {
         flex-direction: column;
+    }
+    
+    /* Better button sizing on mobile */
+    .btn-primary, .btn-secondary {
+        min-height: 48px;
+        font-size: 1.05rem;
+        width: 100%;
+    }
+    
+    .post-btn {
+        min-height: 44px;
+    }
+    
+    /* Improve modal on mobile */
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    /* Better input sizing on mobile */
+    .input-field, .post-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        min-height: 44px;
     }
 }

@@ -8,12 +8,15 @@ A dating app for casual nappers. Meet and nap.
 
 napster is a unique dating application centered around finding the perfect nap partner. It's Tinder for naps - swipe to find people to take naps with, discover amazing nap spots, and build your reputation through the Sleep Cred system.
 
+**Optimized for mobile:** This app is specifically designed for iPhone and Android devices with full touch gesture support, PWA capabilities, and native-like experience.
+
 ## Features
 
 ### 🛏️ Swipe to Match
 - Tinder-style swipe interface to find compatible nap partners
 - View profiles with nap preferences, bio, and Sleep Cred score
 - Instant matching when both users like each other
+- Touch gesture support with visual feedback
 
 ### 🗺️ Interactive Map
 - Discover nap spots near you
@@ -42,11 +45,29 @@ napster is a unique dating application centered around finding the perfect nap p
 - Track progress on active challenges
 - Earn rewards and boost your Sleep Cred
 
+## Mobile Features
+
+### iPhone Optimization
+- Safe area support for notch and Dynamic Island
+- iOS status bar styling
+- Add to home screen support
+- Haptic feedback on interactions
+- Optimized touch targets (44x44px minimum)
+
+### Android Optimization
+- PWA manifest for installation
+- Theme color integration
+- Offline support via service worker
+- Material Design-inspired interactions
+- Optimized for various screen sizes
+
 ## Tech Stack
 
 - HTML5
 - CSS3 (Custom styling with CSS variables)
 - Vanilla JavaScript
+- PWA (Progressive Web App)
+- Service Worker for offline support
 - Responsive design for mobile and desktop
 
 ## Getting Started
@@ -75,11 +96,27 @@ python3 -m http.server 8000
 http://localhost:8000
 ```
 
+### Testing on Mobile
+
+**iOS (iPhone/iPad):**
+1. Open Safari and navigate to your local IP address
+2. Tap the Share button
+3. Select "Add to Home Screen"
+4. The app will launch like a native app
+
+**Android:**
+1. Open Chrome and navigate to your local IP address
+2. Tap the menu button (three dots)
+3. Select "Add to Home Screen" or "Install App"
+4. The app will install as a PWA
+
 ## Project Structure
 
 ```
 napster/
 ├── index.html          # Main HTML file
+├── manifest.json       # PWA manifest for Android
+├── sw.js              # Service worker for offline support
 ├── assets/             # Images, icons, and logos
 │   ├── icon.svg       # App icon
 │   └── logo.svg       # App logo
@@ -103,6 +140,7 @@ napster/
 ### Matching System
 - Swipe right to like
 - Swipe left to pass
+- Visual feedback during swipe
 - Instant notifications on matches
 - Chat with matched users
 
@@ -136,7 +174,7 @@ napster/
 - [ ] Photo upload functionality
 - [ ] In-app messaging
 - [ ] Premium features
-- [ ] Mobile app (iOS/Android)
+- [ ] Native mobile apps (iOS/Android)
 
 ## Contributing
 
