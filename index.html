@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>napster - Nap Dating App</title>
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="napster">
+    <link rel="apple-touch-icon" href="assets/icon.svg">
+    
+    <!-- Android Meta Tags -->
+    <meta name="theme-color" content="#6B5B95">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="assets/logo.svg" alt="napster Logo" class="logo-img">
+                    <span class="logo-text">napster</span>
+                </div>
+                <div class="nav-menu">
+                    <button class="nav-btn active" data-view="swipe">
+                        <span class="icon">💤</span>
+                        <span>Swipe</span>
+                    </button>
+                    <button class="nav-btn" data-view="map">
+                        <span class="icon">🗺️</span>
+                        <span>Map</span>
+                    </button>
+                    <button class="nav-btn" data-view="social">
+                        <span class="icon">👥</span>
+                        <span>Social</span>
+                    </button>
+                    <button class="nav-btn" data-view="challenges">
+                        <span class="icon">🏆</span>
+                        <span>Challenges</span>
+                    </button>
+                    <button class="nav-btn" data-view="profile">
+                        <span class="icon">👤</span>
+                        <span>Profile</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Swipe View -->
+            <div id="swipe-view" class="view active">
+                <div class="swipe-container">
+                    <div class="card-stack">
+                        <div class="profile-card" data-profile-id="1">
+                            <div class="card-image">
+                                <img src="https://via.placeholder.com/400x500/6B5B95/FFFFFF?text=Profile+1" alt="Profile">
+                            </div>
+                            <div class="card-info">
+                                <h2>Alex <span class="age">28</span></h2>
+                                <p class="bio">Power napper 💤 Love afternoon naps in the park</p>
+                                <div class="sleep-cred">
+                                    <span class="cred-badge">⭐ Sleep Cred: 1250</span>
+                                </div>
+                                <div class="nap-preferences">
+                                    <span class="tag">Quiet Places</span>
+                                    <span class="tag">Nature</span>
+                                    <span class="tag">20-30 min</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn reject">✗</button>
+                                <button class="action-btn info">ℹ️</button>
+                                <button class="action-btn accept">♥</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swipe-hint">
+                        Swipe or use buttons to find your nap match!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map View -->
+            <div id="map-view" class="view">
+                <div class="map-container">
+                    <div class="map-header">
+                        <h2>Nap Spots Near You</h2>
+                        <div class="map-controls">
+                            <button class="btn-primary" onclick="showSubmitSpot()">Submit Nap Spot</button>
+                        </div>
+                    </div>
+                    <div id="map" class="map-canvas">
+                        <div class="map-placeholder">
+                            <p>🗺️ Interactive Map</p>
+                            <p class="small">Nap spots and user locations will appear here</p>
+                        </div>
+                    </div>
+                    <div class="nap-spots-list">
+                        <h3>Top Nap Spots</h3>
+                        <div class="spot-item">
+                            <img src="https://via.placeholder.com/80x80/6B5B95/FFFFFF?text=Park" alt="Spot">
+                            <div class="spot-info">
+                                <h4>Central Park - Great Lawn</h4>
+                                <p>⭐ 4.8 (234 reviews)</p>
+                                <p class="spot-tags">
+                                    <span class="tag">Quiet</span>
+                                    <span class="tag">Shaded</span>
+                                </p>
+                            </div>
+                            <button class="btn-small">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Feed View -->
+            <div id="social-view" class="view">
+                <div class="social-container">
+                    <div class="social-header">
+                        <h2>Nap Community</h2>
+                        <button class="btn-primary" onclick="showCreatePost()">Create Post</button>
+                    </div>
+                    <div class="feed">
+                        <!-- Post Item -->
+                        <div class="post-item">
+                            <div class="post-header">
+                                <img src="https://via.placeholder.com/50x50/6B5B95/FFFFFF?text=U" alt="User" class="user-avatar">
+                                <div class="post-user-info">
+                                    <h4>Sarah M.</h4>
+                                    <span class="post-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>Just had the most amazing nap at the botanical gardens! 🌸 The sound of the fountain was so soothing. Highly recommend!</p>
+                                <img src="https://via.placeholder.com/600x400/87CEEB/FFFFFF?text=Botanical+Garden" alt="Post" class="post-image">
+                            </div>
+                            <div class="post-stats">
+                                <span>❤️ 42 likes</span>
+                                <span>💬 8 comments</span>
+                                <span>↗️ 5 shares</span>
+                            </div>
+                            <div class="post-actions">
+                                <button class="post-btn like">❤️ Like</button>
+                                <button class="post-btn comment">💬 Comment</button>
+                                <button class="post-btn share">↗️ Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenges View -->
+            <div id="challenges-view" class="view">
+                <div class="challenges-container">
+                    <div class="challenges-header">
+                        <h2>Sleep Cred Challenges</h2>
+                        <div class="cred-display">
+                            <span class="cred-icon">⭐</span>
+                            <span class="cred-amount">850</span>
+                            <span class="cred-label">Your Sleep Cred</span>
+                        </div>
+                    </div>
+
+                    <div class="challenges-tabs">
+                        <button class="tab-btn active" data-tab="active">Active</button>
+                        <button class="tab-btn" data-tab="completed">Completed</button>
+                        <button class="tab-btn" data-tab="create">Create Challenge</button>
+                    </div>
+
+                    <div class="challenges-content">
+                        <!-- Active Challenges -->
+                        <div class="challenge-item">
+                            <div class="challenge-header">
+                                <h3>The Urban Napper</h3>
+                                <span class="challenge-reward">+200 Cred</span>
+                            </div>
+                            <p class="challenge-desc">Take a nap in 5 different urban locations within a week</p>
+                            <div class="challenge-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                                <span class="progress-text">3/5 locations</span>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="btn-secondary">View Details</button>
+                                <button class="btn-primary">Submit Progress</button>
+                            </div>
+                        </div>
+
+                        <div class="challenge-item">
+                            <div class="challenge-header">
+                                <h3>Adventure Napper</h3>
+                                <span class="challenge-reward">+500 Cred</span>
+                            </div>
+                            <p class="challenge-desc">Take a nap in the most adventurous location (voted by community)</p>
+                            <div class="challenge-meta">
+                                <span>🏔️ Extreme</span>
+                                <span>👥 12 participants</span>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="btn-secondary">View Details</button>
+                                <button class="btn-primary">Accept Challenge</button>
+                            </div>
+                        </div>
+
+                        <div class="nap-dates-section">
+                            <h3>Top Nap Dates</h3>
+                            <p class="section-desc">Share your favorite or most adventurous nap dates!</p>
+                            <div class="nap-date-item">
+                                <img src="https://via.placeholder.com/100x100/6B5B95/FFFFFF?text=ND" alt="Nap Date">
+                                <div class="nap-date-info">
+                                    <h4>Sunset Beach Nap</h4>
+                                    <p>Fell asleep watching the sunset, woke up to stars ✨</p>
+                                    <div class="nap-date-stats">
+                                        <span>❤️ 156</span>
+                                        <span>⭐ 1000 Cred</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile View -->
+            <div id="profile-view" class="view">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-cover"></div>
+                        <div class="profile-main">
+                            <img src="https://via.placeholder.com/150x150/6B5B95/FFFFFF?text=You" alt="Profile" class="profile-avatar">
+                            <div class="profile-details">
+                                <h2>Your Name</h2>
+                                <p class="profile-tagline">Passionate napper since 2020</p>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">850</span>
+                                        <span class="stat-label">Sleep Cred</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">42</span>
+                                        <span class="stat-label">Nap Dates</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">128</span>
+                                        <span class="stat-label">Posts</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn-primary">Edit Profile</button>
+                        </div>
+                    </div>
+
+                    <div class="profile-content">
+                        <div class="profile-section">
+                            <h3>Nap Preferences</h3>
+                            <div class="preferences-grid">
+                                <span class="pref-tag">🌳 Nature</span>
+                                <span class="pref-tag">🤫 Quiet</span>
+                                <span class="pref-tag">☀️ Afternoon</span>
+                                <span class="pref-tag">⏰ 20-30 min</span>
+                                <span class="pref-tag">🎵 White noise</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <h3>Recent Activity</h3>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <span class="activity-icon">🏆</span>
+                                    <div class="activity-text">
+                                        <p>Completed "Urban Napper" challenge</p>
+                                        <span class="activity-time">2 days ago</span>
+                                    </div>
+                                    <span class="activity-cred">+200</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-icon">❤️</span>
+                                    <div class="activity-text">
+                                        <p>Matched with Alex for a nap date</p>
+                                        <span class="activity-time">5 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal for Create Post -->
+        <div id="create-post-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create Post</h3>
+                    <button class="close-modal" onclick="closeModal('create-post-modal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <textarea class="post-input" placeholder="Share your nap experience..."></textarea>
+                    <div class="post-options">
+                        <button class="btn-secondary">📷 Add Photo</button>
+                        <button class="btn-secondary">📍 Add Location</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" onclick="closeModal('create-post-modal')">Cancel</button>
+                    <button class="btn-primary">Post</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Submit Nap Spot -->
+        <div id="submit-spot-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Submit Nap Spot</h3>
+                    <button class="close-modal" onclick="closeModal('submit-spot-modal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="input-field" placeholder="Spot Name">
+                    <textarea class="post-input" placeholder="Description"></textarea>
+                    <input type="text" class="input-field" placeholder="Location">
+                    <div class="post-options">
+                        <button class="btn-secondary">📷 Add Photos</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" onclick="closeModal('submit-spot-modal')">Cancel</button>
+                    <button class="btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
