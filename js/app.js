@@ -11,7 +11,7 @@ const state = {
             bio: 'Power napper 💤 Love afternoon naps in the park',
             sleepCred: 1250,
             preferences: ['Quiet Places', 'Nature', '20-30 min'],
-            image: 'https://via.placeholder.com/400x500/6B5B95/FFFFFF?text=Profile+1'
+            image: 'assets/profiles/profile_1.jpeg'
         },
         {
             id: 2,
@@ -20,7 +20,7 @@ const state = {
             bio: 'Looking for cozy nap spots and chill vibes ☁️',
             sleepCred: 980,
             preferences: ['Indoor', 'Music', '15-20 min'],
-            image: 'https://via.placeholder.com/400x500/88B04B/FFFFFF?text=Profile+2'
+            image: 'assets/profiles/profile_2.jpeg'
         },
         {
             id: 3,
@@ -29,7 +29,52 @@ const state = {
             bio: 'Adventure napper! Let\'s find the most unique spots 🏔️',
             sleepCred: 2100,
             preferences: ['Outdoor', 'Adventure', '30-60 min'],
-            image: 'https://via.placeholder.com/400x500/F7CAC9/FFFFFF?text=Profile+3'
+            image: 'assets/profiles/profile_3.jpeg'
+        },
+        {
+            id: 4,
+            name: 'Casey',
+            age: 26,
+            bio: 'Hammock enthusiast. If it swings, I nap. 🌴',
+            sleepCred: 1500,
+            preferences: ['Hammock', 'Beach', '45 min'],
+            image: 'assets/profiles/profile_4.jpeg'
+        },
+        {
+            id: 5,
+            name: 'Riley',
+            age: 24,
+            bio: 'Library napper. Shhh! 📚',
+            sleepCred: 800,
+            preferences: ['Quiet', 'Books', '20 min'],
+            image: 'assets/profiles/profile_5.jpeg'
+        },
+        {
+            id: 6,
+            name: 'Jamie',
+            age: 29,
+            bio: 'Roof access only. Sky napper. ☁️',
+            sleepCred: 1800,
+            preferences: ['Rooftop', 'City View', '30 min'],
+            image: 'assets/profiles/profile_6.jpeg'
+        },
+        {
+            id: 7,
+            name: 'Taylor',
+            age: 27,
+            bio: 'Professional cat napper. 🐱',
+            sleepCred: 1100,
+            preferences: ['Cozy', 'Pets', '15 min'],
+            image: 'assets/profiles/profile_7.jpeg'
+        },
+        {
+            id: 8,
+            name: 'Morgan',
+            age: 23,
+            bio: 'Late night study napper. ☕',
+            sleepCred: 950,
+            preferences: ['Cafe', 'Coffee', '10 min'],
+            image: 'assets/profiles/profile_8.jpeg'
         }
     ],
     currentProfileIndex: 0
