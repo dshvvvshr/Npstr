@@ -1,13 +1,13 @@
 // napster Service Worker for PWA support
 
-const CACHE_NAME = 'napster-v2';
+const CACHE_NAME = 'napster-v3';
 const urlsToCache = [
     '/',
     '/index.html',
     '/styles/main.css',
     '/js/app.js',
-    '/assets/logo.png',
-    '/assets/icon.jpg',
+    '/assets/icons/logo.png',
+    '/assets/icons/icon.jpg',
     '/manifest.json'
 ];
 
