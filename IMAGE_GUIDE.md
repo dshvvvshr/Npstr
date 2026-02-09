@@ -168,7 +168,7 @@ Edit `/index.html` to replace placeholder URLs:
 Edit `/sw.js` to include your new image paths in the cache (lines 3-12):
 
 ```javascript
-const CACHE_NAME = 'napster-v1';
+const CACHE_NAME = 'napster-v3';
 const urlsToCache = [
     '/',
     '/index.html',
