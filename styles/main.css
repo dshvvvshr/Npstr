@@ -1,17 +1,21 @@
 /* napster - Nap Dating App Styles */
 
 :root {
-    --primary-color: #6B5B95;
-    --secondary-color: #88B04B;
-    --accent-color: #F7CAC9;
+    /* Tinder-inspired color palette */
+    --primary-color: #FE3C72;  /* Tinder coral/pink */
+    --secondary-color: #00D4A1; /* Tinder teal */
+    --accent-color: #FF6B6B;
     --dark-bg: #2C2C2C;
-    --light-bg: #F5F5F5;
+    --light-bg: #FAFAFA;
     --card-bg: #FFFFFF;
-    --text-primary: #333333;
-    --text-secondary: #666666;
+    --text-primary: #424242;
+    --text-secondary: #757575;
     --border-color: #E0E0E0;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --reject-color: #F27121; /* Orange for reject */
+    --like-color: #00D4A1; /* Green for like */
+    --superlike-color: #2E86DE; /* Blue for super like */
     
     /* Safe area insets for iPhone notch/island */
     --safe-area-top: env(safe-area-inset-top, 0px);
@@ -168,16 +172,17 @@ body {
     position: absolute;
     width: 100%;
     background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .card-image {
     width: 100%;
-    height: 400px;
+    height: 500px;
     overflow: hidden;
+    position: relative;
 }
 
 .card-image img {
@@ -187,35 +192,49 @@ body {
 }
 
 .card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+    color: white;
 }
 
 .card-info h2 {
-    color: var(--primary-color);
+    color: white;
     margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .age {
-    font-weight: normal;
-    color: var(--text-secondary);
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
 }
 
 .bio {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
 .sleep-cred {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .cred-badge {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .nap-preferences {
@@ -225,34 +244,45 @@ body {
 }
 
 .tag {
-    background-color: var(--light-bg);
-    color: var(--text-primary);
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .card-actions {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: var(--light-bg);
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: white;
 }
 
 .action-btn {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: none;
-    font-size: 1.5rem;
+    border: 2px solid transparent;
+    font-size: 1.8rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     /* Better touch feedback */
     user-select: none;
     -webkit-user-select: none;
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
 }
 
 .action-btn:active {
@@ -260,17 +290,33 @@ body {
 }
 
 .action-btn.reject {
-    background-color: #FF6B6B;
+    color: var(--reject-color);
+    border-color: var(--reject-color);
+}
+
+.action-btn.reject:hover {
+    background-color: var(--reject-color);
     color: white;
 }
 
 .action-btn.info {
-    background-color: var(--card-bg);
-    color: var(--primary-color);
+    color: var(--superlike-color);
+    border-color: var(--superlike-color);
+    font-size: 1.5rem;
+}
+
+.action-btn.info:hover {
+    background-color: var(--superlike-color);
+    color: white;
 }
 
 .action-btn.accept {
-    background-color: var(--secondary-color);
+    color: var(--like-color);
+    border-color: var(--like-color);
+}
+
+.action-btn.accept:hover {
+    background-color: var(--like-color);
     color: white;
 }
 
@@ -281,7 +327,9 @@ body {
 .swipe-hint {
     text-align: center;
     color: var(--text-secondary);
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 /* Map View */

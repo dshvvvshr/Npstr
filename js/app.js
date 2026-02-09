@@ -11,7 +11,7 @@ const state = {
             bio: 'Power napper 💤 Love afternoon naps in the park',
             sleepCred: 1250,
             preferences: ['Quiet Places', 'Nature', '20-30 min'],
-            image: 'https://via.placeholder.com/400x500/6B5B95/FFFFFF?text=Profile+1'
+            image: 'https://via.placeholder.com/400x600/FE3C72/FFFFFF?text=Profile+1'
         },
         {
             id: 2,
@@ -20,7 +20,7 @@ const state = {
             bio: 'Looking for cozy nap spots and chill vibes ☁️',
             sleepCred: 980,
             preferences: ['Indoor', 'Music', '15-20 min'],
-            image: 'https://via.placeholder.com/400x500/88B04B/FFFFFF?text=Profile+2'
+            image: 'https://via.placeholder.com/400x600/00D4A1/FFFFFF?text=Profile+2'
         },
         {
             id: 3,
@@ -29,7 +29,7 @@ const state = {
             bio: 'Adventure napper! Let\'s find the most unique spots 🏔️',
             sleepCred: 2100,
             preferences: ['Outdoor', 'Adventure', '30-60 min'],
-            image: 'https://via.placeholder.com/400x500/F7CAC9/FFFFFF?text=Profile+3'
+            image: 'https://via.placeholder.com/400x600/2E86DE/FFFFFF?text=Profile+3'
         }
     ],
     currentProfileIndex: 0
@@ -187,21 +187,21 @@ function loadProfile(index) {
             <div class="profile-card" data-profile-id="${profile.id}">
                 <div class="card-image">
                     <img src="${profile.image}" alt="Profile">
-                </div>
-                <div class="card-info">
-                    <h2>${profile.name} <span class="age">${profile.age}</span></h2>
-                    <p class="bio">${profile.bio}</p>
-                    <div class="sleep-cred">
-                        <span class="cred-badge">⭐ Sleep Cred: ${profile.sleepCred}</span>
-                    </div>
-                    <div class="nap-preferences">
-                        ${profile.preferences.map(pref => `<span class="tag">${pref}</span>`).join('')}
+                    <div class="card-info">
+                        <h2>${profile.name} <span class="age">${profile.age}</span></h2>
+                        <p class="bio">${profile.bio}</p>
+                        <div class="sleep-cred">
+                            <span class="cred-badge">⭐ ${profile.sleepCred}</span>
+                        </div>
+                        <div class="nap-preferences">
+                            ${profile.preferences.map(pref => `<span class="tag">${pref}</span>`).join('')}
+                        </div>
                     </div>
                 </div>
                 <div class="card-actions">
-                    <button class="action-btn reject">✗</button>
-                    <button class="action-btn info">ℹ️</button>
-                    <button class="action-btn accept">♥</button>
+                    <button class="action-btn reject" title="Nope">✗</button>
+                    <button class="action-btn info" title="Super Like">⭐</button>
+                    <button class="action-btn accept" title="Like">♥</button>
                 </div>
             </div>
         `;

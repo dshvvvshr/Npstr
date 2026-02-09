@@ -180,6 +180,10 @@ napster/
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## Design Inspiration
+
+The user interface design is inspired by popular dating app patterns, particularly Tinder's swipe-based matching interface. This is a completely original implementation built with web technologies (HTML/CSS/JavaScript) for a unique nap-focused dating concept.
+
 ## License
 
 MIT License - see LICENSE file for details
