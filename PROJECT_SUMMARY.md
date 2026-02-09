@@ -2,7 +2,7 @@
 
 ## Project Information
 - **Application Name:** napster
-- **Domain:** www.napsterworld.info
+- **Domain:** https://npstr.vercel.app
 - **Type:** Nap-focused dating/social application
 - **Tech Stack:** HTML5, CSS3, Vanilla JavaScript
 
@@ -159,7 +159,7 @@ Can be deployed immediately to:
 - AWS S3 + CloudFront
 - Any static hosting service
 
-Domain (www.napsterworld.info) needs to be configured to point to hosting.
+Application is deployed on Vercel at https://npstr.vercel.app with automatic SSL/TLS.
 
 ## Security
 
@@ -199,6 +199,6 @@ napster is a complete, production-ready frontend application for a nap-focused d
 ✅ Sleep Cred system with challenges
 ✅ Nap date sharing feature
 ✅ Logo and icon assets
-✅ Domain documentation (www.napsterworld.info)
+✅ Domain documentation (https://npstr.vercel.app)
 
 The application is ready to help people find their perfect nap partner! 💤
