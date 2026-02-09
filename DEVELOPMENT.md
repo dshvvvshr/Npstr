@@ -4,7 +4,7 @@
 napster is a dating application centered around finding compatible nap partners. The application provides a Tinder-style interface combined with social features, location-based nap spot discovery, and a gamified reputation system.
 
 ## Domain
-**Live URL:** www.napsterworld.info
+**Live URL:** https://npstr.vercel.app
 
 ## Architecture
 
@@ -228,9 +228,9 @@ POST /api/challenges/progress
 - AWS S3 + CloudFront
 
 ### Domain Configuration
-- Domain: www.napsterworld.info
-- SSL/TLS certificate required
-- DNS configuration to point to hosting
+- Domain: https://npstr.vercel.app
+- SSL/TLS certificate provided by Vercel
+- Deployed on Vercel platform
 
 ## Browser Support
 - Chrome 90+

@@ -1,6 +1,6 @@
 # napster
 
-**Live at: www.napsterworld.info**
+**Live at: https://npstr.vercel.app**
 
 A dating app for casual nappers. Meet and nap.
 
@@ -186,7 +186,7 @@ MIT License - see LICENSE file for details
 
 ## Domain
 
-**Official Website:** www.napsterworld.info
+**Official Website:** https://npstr.vercel.app
 
 ## Contact
 
