@@ -9,7 +9,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "assets/icon.jpg",
+      "src": "assets/icons/icon.jpg",
       "sizes": "784x1168",
       "type": "image/jpeg",
       "purpose": "any maskable"

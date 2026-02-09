@@ -1,80 +1,143 @@
-# How to Replace the Logo
+# How to Add Your Custom Images
 
-The application currently uses a placeholder SVG logo. When you're ready to use your actual logo from Google Drive, follow these steps:
+The napster app is ready for your custom images! Follow this guide to add your profile photos, logos, and other images.
 
-## Steps to Replace Logo
+## 📋 Quick Start
 
-1. **Download your logo** from Google Drive:
-   - Link: https://drive.google.com/file/d/1sbUMiNfolgrIJcMlGxHvmYJpZJMSmOAL/view?usp=drivesdk
-   - Download the file to your computer
+**See the comprehensive [IMAGE_GUIDE.md](IMAGE_GUIDE.md) for detailed instructions.**
 
-2. **Replace the logo file:**
+## 🖼️ Image Types Needed
+
+### 1. Profile Photos (Required)
+- **Location:** `assets/profiles/`
+- **Quantity:** At least 3 photos
+- **Size:** 400x600 pixels (portrait)
+- **Format:** JPG or PNG
+- **Purpose:** User profile cards in swipe view
+
+### 2. App Logo (Required)
+- **Location:** `assets/icons/logo.png`
+- **Size:** Flexible (displays at 40px height)
+- **Format:** PNG preferred
+- **Purpose:** Navigation bar
+
+### 3. App Icon (Required)
+- **Location:** `assets/icons/icon.jpg`
+- **Size:** 512x512 pixels (square)
+- **Format:** JPG or PNG
+- **Purpose:** PWA icon, favicon
+
+### 4. Nap Spot Images (Optional)
+- **Location:** `assets/spots/`
+- **Size:** 80x80 pixels (square)
+- **Purpose:** Map view locations
+
+### 5. Social Post Images (Optional)
+- **Location:** `assets/posts/`
+- **Size:** 600x400 pixels (landscape)
+- **Purpose:** Social feed posts
+
+## 🚀 Adding Your Images
+
+### Step 1: Add Profile Photos
+
+1. Place your photos in `assets/profiles/` directory:
+   ```
+   assets/profiles/profile-1.jpg
+   assets/profiles/profile-2.jpg
+   assets/profiles/profile-3.jpg
+   ```
+
+2. Update `js/app.js` (lines 6-35) to reference your images:
+   ```javascript
+   image: 'assets/profiles/profile-1.jpg'
+   ```
+
+### Step 2: Replace Logo and Icon
+
+1. Replace the existing files:
+   - `assets/icons/logo.png` - Your logo
+   - `assets/icons/icon.jpg` - Your app icon
+
+2. That's it! The app already references these paths.
+
+### Step 3: Add Additional Images
+
+For spots, posts, and other images, see detailed instructions in [IMAGE_GUIDE.md](IMAGE_GUIDE.md).
+
+## 📁 Current Directory Structure
+
+```
+assets/
+├── icons/          # Logo and app icon
+│   ├── logo.png    # ← Replace with your logo
+│   ├── icon.jpg    # ← Replace with your icon
+│   └── README.md
+├── profiles/       # User profile photos
+│   └── README.md   # ← Add your photos here
+├── spots/          # Nap location images
+│   └── README.md
+└── posts/          # Social feed images
+    └── README.md
+```
+
+## ✅ Files Already Updated
+
+The following files have been updated to use the new asset structure:
+- ✅ `index.html` - Logo and icon paths
+- ✅ `manifest.json` - PWA icon path
+- ✅ `sw.js` - Service worker cache
+
+You just need to add your image files!
+
+## 🎨 Image Requirements Summary
+
+| Type | Location | Size | Format | Quantity |
+|------|----------|------|--------|----------|
+| Profile Photos | `assets/profiles/` | 400x600px | JPG/PNG | 3+ |
+| Logo | `assets/icons/logo.png` | Flexible | PNG | 1 |
+| Icon | `assets/icons/icon.jpg` | 512x512px | JPG/PNG | 1 |
+| Spot Images | `assets/spots/` | 80x80px | JPG/PNG | As needed |
+| Post Images | `assets/posts/` | 600x400px | JPG/PNG | As needed |
+
+## 📖 Additional Resources
+
+- **[IMAGE_GUIDE.md](IMAGE_GUIDE.md)** - Complete guide with examples
+- **[assets/profiles/README.md](assets/profiles/README.md)** - Profile photo specs
+- **[assets/icons/README.md](assets/icons/README.md)** - Logo and icon specs
+- **[assets/spots/README.md](assets/spots/README.md)** - Spot image specs
+- **[assets/posts/README.md](assets/posts/README.md)** - Post image specs
+
+## 🧪 Testing
+
+After adding your images:
+
+1. Start local server:
    ```bash
-   # Navigate to the assets directory
-   cd assets/
-   
-   # Remove the placeholder logo
-   rm logo.svg
-   
-   # Copy your logo file
-   # If it's an SVG:
-   cp /path/to/your/logo.svg logo.svg
-   
-   # If it's PNG/JPG, you can also use it:
-   cp /path/to/your/logo.png logo.png
-   # Then update index.html to reference logo.png instead of logo.svg
+   python3 -m http.server 8000
    ```
 
-3. **If your logo is PNG/JPG** instead of SVG:
-   - Update line 16 in `index.html`:
-   ```html
-   <!-- Change from: -->
-   <img src="assets/logo.svg" alt="napster Logo" class="logo-img">
-   
-   <!-- To: -->
-   <img src="assets/logo.png" alt="napster Logo" class="logo-img">
-   <!-- or logo.jpg if it's a JPEG -->
-   ```
+2. Open http://localhost:8000 in your browser
 
-4. **Adjust logo size if needed:**
-   - The logo is currently sized at 40x40 pixels
-   - To change this, edit `styles/main.css` around line 59:
-   ```css
-   .logo-img {
-       width: 40px;    /* Change these values */
-       height: 40px;
-       border-radius: 8px;
-   }
-   ```
+3. Check that:
+   - Logo appears in navigation bar
+   - Icon shows in browser tab
+   - Profile cards display your photos
+   - All images load without errors
 
-5. **Replace the icon (favicon) as well:**
-   ```bash
-   # Similar process for the icon
-   rm assets/icon.svg
-   cp /path/to/your/icon.svg assets/icon.svg
-   
-   # Update line 8 in index.html if using PNG:
-   <link rel="icon" type="image/png" href="assets/icon.png">
-   ```
+## 💡 Tips
 
-## Recommended Logo Specifications
+- Keep file sizes reasonable (< 500KB for profiles)
+- Use descriptive file names
+- Maintain consistent image quality
+- Test on mobile devices
+- Consider image compression for better performance
 
-- **Format:** SVG (preferred) or PNG with transparent background
-- **Size:** Square aspect ratio (e.g., 200x200px, 512x512px)
-- **Colors:** Should work with the app's purple (#6B5B95) theme
-- **Icon:** Should be recognizable at small sizes (16x16px to 64x64px)
+## ❓ Need Help?
 
-## Testing After Replacement
+If you have questions or need clarification:
+1. Check the [IMAGE_GUIDE.md](IMAGE_GUIDE.md) for detailed instructions
+2. Review the README files in each asset directory
+3. Ensure file paths match exactly (case-sensitive)
+4. Check browser console for any loading errors
 
-1. Refresh your browser
-2. Check that the logo appears in the navigation bar
-3. Check that the favicon appears in the browser tab
-4. Verify it looks good on both light and dark backgrounds
-
-## Need Help?
-
-If you encounter any issues replacing the logo, you can:
-1. Open an issue on GitHub
-2. Check that the file path is correct
-3. Verify the image file isn't corrupted
-4. Make sure the CSS sizing is appropriate for your logo dimensions
